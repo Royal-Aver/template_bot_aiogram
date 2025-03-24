@@ -1,10 +1,12 @@
 import asyncio
 import logging
+import os
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from config_data.config import Config, load_config
+from dotenv import find_dotenv, load_dotenv
 # Импортируем роутеры
 # ...
 # Импортируем миддлвари
@@ -35,8 +37,10 @@ async def main():
     storage = ...
 
     # Инициализируем бот и диспетчер
+    load_dotenv(find_dotenv())
+
     bot = Bot(
-        token=config.tg_bot.token,
+        token=os.getenv("BOT_TOKEN"),
         default=DefaultBotProperties(parse_mode=ParseMode.HTML)
     )
     dp = Dispatcher(storage=storage)
