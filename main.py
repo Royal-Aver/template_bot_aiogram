@@ -8,12 +8,12 @@ from aiogram.enums import ParseMode
 from config_data.config import Config, load_config
 from dotenv import find_dotenv, load_dotenv
 # Импортируем роутеры
-# ...
+
 # Импортируем миддлвари
 # ...
 # Импортируем вспомогательные функции для создания нужных объектов
-# ...
-from keyboards.main_menu import set_main_menu
+from keyboards.set_menu import set_main_menu
+# from keyboards.main_menu import set_main_menu
 
 # Инициализируем логгер
 logger = logging.getLogger(__name__)
@@ -43,13 +43,13 @@ async def main():
         token=os.getenv("BOT_TOKEN"),
         default=DefaultBotProperties(parse_mode=ParseMode.HTML)
     )
-    dp = Dispatcher(storage=storage)
+    dp = Dispatcher(storage=None)
 
     # Инициализируем другие объекты (пул соединений с БД, кеш и т.п.)
-    # ...
+    dp.include_router(user.router)
 
     # Помещаем нужные объекты в workflow_data диспетчера
-    dp.workflow_data.update(...)
+    # dp.workflow_data.update(...)
 
     # Настраиваем главное меню бота
     await set_main_menu(bot)
