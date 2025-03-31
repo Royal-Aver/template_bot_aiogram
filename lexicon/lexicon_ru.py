@@ -4,3 +4,7 @@ LEXICON_COMMANDS_RU: dict[str, str] = {
     '/command_3': 'command_3 desription',
     '/command_4': 'command_4 desription'
 }
+
+cmd = {
+    "/start": "Привет! Я бот, давай что-то делать",
+}
